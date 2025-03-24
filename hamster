@@ -2,12 +2,12 @@ package br.com.petshop;
 
 //A classe Hamster herda de Animal
 public class hamster extends Animal {
- private String corPelo;
+ private String corhamster;
 
  // Construtor para inicializar Hamster com atributos específicos
  public hamster(String nome, int idade, String corPelo) {
      super(nome, idade); // Chama o construtor da classe base (Animal)
-     this.corPelo = corPelo;
+     this.corhamster = corPelo;
  }
 
  // Método específico para roer
@@ -19,6 +19,6 @@ public class hamster extends Animal {
  @Override
  public void exibirInfo() {
      super.exibirInfo();
-     System.out.println("Cor do Pelo: " + corPelo);
+     System.out.println("Cor do Pelo: " + corhamster);
  }
 }
