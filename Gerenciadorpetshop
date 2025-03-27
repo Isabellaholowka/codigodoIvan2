@@ -1,0 +1,95 @@
+package br.com.petshop;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Classe responsável por gerenciar os animais
+public class GerenciadorPetShop {
+    private List<Animal> listaAnimais; // Lista para armazenar os animais cadastrados
+    private Scanner scanner;
+
+    // Construtor da classe
+    public GerenciadorPetShop() {
+        this.listaAnimais = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
+    }
+
+    // Método para cadastrar um cachorro
+    public void cadastrarCachorro() {
+        System.out.print("Digite o nome do cachorro: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite a idade do cachorro: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer
+        System.out.print("Digite a raça do cachorro: ");
+        String raca = scanner.nextLine();
+
+        Cachorro cachorro = new Cachorro(nome, idade, raca);
+        listaAnimais.add(cachorro);
+        System.out.println("✅ Cachorro cadastrado com sucesso!");
+    }
+
+    // Método para cadastrar um gato
+    public void cadastrarGato() {
+        System.out.print("Digite o nome do gato: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite a idade do gato: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer
+        System.out.print("Digite a cor do pelo do gato: ");
+        String corPelo = scanner.nextLine();
+
+        Gato gato = new Gato(nome, idade, corPelo);
+        listaAnimais.add(gato);
+        System.out.println("✅ Gato cadastrado com sucesso!");
+    }
+
+    // Método para cadastrar um hamster
+    public void cadastrarHamster() {
+        System.out.print("Digite o nome do hamster: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite a idade do hamster: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer
+        System.out.print("Digite a cor do pelo do hamster: ");
+        String corPelo = scanner.nextLine();
+
+        Hamster hamster = new Hamster(nome, idade, corPelo);
+        listaAnimais.add(hamster);
+        System.out.println("✅ Hamster cadastrado com sucesso!");
+    }
+
+    // Método para exibir todos os animais cadastrados
+    public void exibirAnimais() {
+        if (listaAnimais.isEmpty()) {
+            System.out.println("⚠ Nenhum animal cadastrado!");
+        } else {
+            System.out.println("\n=== LISTA DE ANIMAIS CADASTRADOS ===");
+            for (Animal animal : listaAnimais) {
+                animal.exibirInfo();
+                System.out.println("------------------------");
+            }
+        }
+    }
+
+    // Método para localizar um animal por nome
+    public void localizarAnimal() {
+        System.out.print("Digite o nome do animal que deseja localizar: ");
+        String busca = scanner.nextLine();
+        boolean encontrado = false;
+
+        System.out.println("\n🔎 RESULTADO DA BUSCA:");
+        for (Animal animal : listaAnimais) {
+            if (animal.getNome().equalsIgnoreCase(busca)) {
+                animal.exibirInfo();
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("⚠ Nenhum animal encontrado com o nome '" + busca + "'.");
+        }
+    }
+}
+
