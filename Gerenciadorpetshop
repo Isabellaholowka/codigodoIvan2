@@ -1,95 +1,101 @@
 package br.com.petshop;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-// Classe responsável por gerenciar os animais
-public class GerenciadorPetShop {
-    private List<Animal> listaAnimais; // Lista para armazenar os animais cadastrados
+public class Gerenciadorpetshop {
+    private ArrayList<Animal> animais;
     private Scanner scanner;
 
-    // Construtor da classe
-    public GerenciadorPetShop() {
-        this.listaAnimais = new ArrayList<>();
+    public Gerenciadorpetshop() {
+        this.animais = new ArrayList<>();
         this.scanner = new Scanner(System.in);
     }
 
-    // Método para cadastrar um cachorro
-    public void cadastrarCachorro() {
-        System.out.print("Digite o nome do cachorro: ");
+    public void cadastrarcachorro() {
+        System.out.print("Nome do cachorro: ");
         String nome = scanner.nextLine();
-        System.out.print("Digite a idade do cachorro: ");
+        System.out.print("Idade do cachorro: ");
         int idade = scanner.nextInt();
-        scanner.nextLine(); // Limpa o buffer
-        System.out.print("Digite a raça do cachorro: ");
+        scanner.nextLine();
+        System.out.print("Raça do cachorro: ");
         String raca = scanner.nextLine();
-
-        Cachorro cachorro = new Cachorro(nome, idade, raca);
-        listaAnimais.add(cachorro);
-        System.out.println("✅ Cachorro cadastrado com sucesso!");
+        animais.add(new cachorro(nome, idade, raca));
+        System.out.println("Cachorro cadastrado com sucesso!");
     }
 
-    // Método para cadastrar um gato
-    public void cadastrarGato() {
-        System.out.print("Digite o nome do gato: ");
+    public void cadastrargato() {
+        System.out.print("Nome do gato: ");
         String nome = scanner.nextLine();
-        System.out.print("Digite a idade do gato: ");
+        System.out.print("Idade do gato: ");
         int idade = scanner.nextInt();
-        scanner.nextLine(); // Limpa o buffer
-        System.out.print("Digite a cor do pelo do gato: ");
+        scanner.nextLine();
+        System.out.print("Cor do pelo do gato: ");
         String corPelo = scanner.nextLine();
-
-        Gato gato = new Gato(nome, idade, corPelo);
-        listaAnimais.add(gato);
-        System.out.println("✅ Gato cadastrado com sucesso!");
+        animais.add(new gato(nome, idade, corPelo));
+        System.out.println("Gato cadastrado com sucesso!");
     }
 
-    // Método para cadastrar um hamster
-    public void cadastrarHamster() {
-        System.out.print("Digite o nome do hamster: ");
+    public void cadastrarhamster() {
+        System.out.print("Nome do hamster: ");
         String nome = scanner.nextLine();
-        System.out.print("Digite a idade do hamster: ");
+        System.out.print("Idade do hamster: ");
         int idade = scanner.nextInt();
-        scanner.nextLine(); // Limpa o buffer
-        System.out.print("Digite a cor do pelo do hamster: ");
+        scanner.nextLine();
+        System.out.print("Cor do pelo do hamster: ");
         String corPelo = scanner.nextLine();
-
-        Hamster hamster = new Hamster(nome, idade, corPelo);
-        listaAnimais.add(hamster);
-        System.out.println("✅ Hamster cadastrado com sucesso!");
+        animais.add(new hamster(nome, idade, corPelo));
+        System.out.println("Hamster cadastrado com sucesso!");
     }
 
-    // Método para exibir todos os animais cadastrados
     public void exibirAnimais() {
-        if (listaAnimais.isEmpty()) {
-            System.out.println("⚠ Nenhum animal cadastrado!");
-        } else {
-            System.out.println("\n=== LISTA DE ANIMAIS CADASTRADOS ===");
-            for (Animal animal : listaAnimais) {
-                animal.exibirInfo();
-                System.out.println("------------------------");
-            }
+        System.out.println("\n=== Lista de Animais Cadastrados ===");
+        for (Animal animal : animais) {
+            animal.exibirInfo();
+            System.out.println("------------------------");
         }
     }
 
-    // Método para localizar um animal por nome
-    public void localizarAnimal() {
-        System.out.print("Digite o nome do animal que deseja localizar: ");
-        String busca = scanner.nextLine();
-        boolean encontrado = false;
+    public void iniciar() {
+        int opcao;
+        do {
+            System.out.println("\n=== MENU ===");
+            System.out.println("1 - Cadastrar Cachorro");
+            System.out.println("2 - Cadastrar Gato");
+            System.out.println("3 - Cadastrar Hamster");
+            System.out.println("4 - Exibir Animais");
+            System.out.println("5 - Sair");
+            System.out.print("Escolha uma opção: ");
 
-        System.out.println("\n🔎 RESULTADO DA BUSCA:");
-        for (Animal animal : listaAnimais) {
-            if (animal.getNome().equalsIgnoreCase(busca)) {
-                animal.exibirInfo();
-                encontrado = true;
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    cadastrarcachorro();
+                    break;
+                case 2:
+                    cadastrargato();
+                    break;
+                case 3:
+                    cadastrarhamster();
+                    break;
+                case 4:
+                    exibirAnimais();
+                    break;
+                case 5:
+                    System.out.println("Encerrando o programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
             }
-        }
+        } while (opcao != 5);
 
-        if (!encontrado) {
-            System.out.println("⚠ Nenhum animal encontrado com o nome '" + busca + "'.");
-        }
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        petshop petShop = new petshop();
+        petShop.iniciar();
     }
 }
-
