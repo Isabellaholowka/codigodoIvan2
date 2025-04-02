@@ -56,6 +56,24 @@ public class Gerenciadorpetshop {
         }
     }
 
+    public void buscarAnimalPorNome() {
+        System.out.print("Digite o nome do animal que deseja buscar: ");
+        String nomeBusca = scanner.nextLine();
+        boolean encontrado = false;
+
+        System.out.println("\n🔎 RESULTADO DA BUSCA:");
+        for (Animal animal : animais) {
+            if (animal.getNome().equalsIgnoreCase(nomeBusca)) {
+                animal.exibirInfo();
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("⚠ Nenhum animal encontrado com o nome '" + nomeBusca + "'.");
+        }
+    }
+
     public void iniciar() {
         int opcao;
         do {
@@ -64,7 +82,8 @@ public class Gerenciadorpetshop {
             System.out.println("2 - Cadastrar Gato");
             System.out.println("3 - Cadastrar Hamster");
             System.out.println("4 - Exibir Animais");
-            System.out.println("5 - Sair");
+            System.out.println("5 - Buscar Animal por Nome");
+            System.out.println("6 - Sair");
             System.out.print("Escolha uma opção: ");
 
             opcao = scanner.nextInt();
@@ -84,12 +103,15 @@ public class Gerenciadorpetshop {
                     exibirAnimais();
                     break;
                 case 5:
+                    buscarAnimalPorNome();
+                    break;
+                case 6:
                     System.out.println("Encerrando o programa...");
                     break;
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        } while (opcao != 5);
+        } while (opcao != 6);
 
         scanner.close();
     }
