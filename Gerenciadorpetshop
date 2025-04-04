@@ -18,11 +18,15 @@ public class Gerenciadorpetshop {
         String nome = scanner.nextLine();
         System.out.print("Idade do cachorro: ");
         int idade = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("Raça do cachorro: ");
         String raca = scanner.nextLine();
-        animais.add(new cachorro(nome, idade, raca));
-        System.out.println("Cachorro cadastrado com sucesso!");
+        scanner.nextLine();
+        
+        
+        cachorro cachorro = new cachorro (nome, idade,raca);
+    	animais.add(cachorro);
+    	salvarAnimaisNoArquivo (cachorro);
+    	System.out.print("Cahorro cadastro com sucesso!! ");
     }
 
     public void cadastrargato() {
@@ -30,11 +34,14 @@ public class Gerenciadorpetshop {
         String nome = scanner.nextLine();
         System.out.print("Idade do gato: ");
         int idade = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("Cor do pelo do gato: ");
         String corPelo = scanner.nextLine();
-        animais.add(new gato(nome, idade, corPelo));
-        System.out.println("Gato cadastrado com sucesso!");
+        scanner.nextLine();
+        
+        gato gato = new gato (nome, idade,corPelo);
+    	animais.add(gato);
+    	salvarAnimaisNoArquivo (gato);
+    	System.out.print("Gato cadastro com sucesso!! ");
     }
 
     public void cadastrarhamster() {
@@ -42,19 +49,26 @@ public class Gerenciadorpetshop {
         String nome = scanner.nextLine();
         System.out.print("Idade do hamster: ");
         int idade = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("Cor do pelo do hamster: ");
-        String corPelo = scanner.nextLine();
-        animais.add(new hamster(nome, idade, corPelo));
-        System.out.println("Hamster cadastrado com sucesso!");
+        String corPelo = scanner.nextLine(); 
+        scanner.nextLine();
+       
+        hamster hamster = new hamster (nome, idade,corPelo);
+    	animais.add(hamster);
+    	salvarAnimaisNoArquivo (hamster);
+    	System.out.print("Hamster cadastro com sucesso!! ");
     }
 
     public void exibirAnimais() {
+    	if (animais.isEmpty()) {
+    		System.out.println("Nenhum Veículo Cadastrado!");
+    	} else {
         System.out.println("\n=== Lista de Animais Cadastrados ===");
         for (Animal animal : animais) {
             animal.exibirInfo();
             System.out.println("------------------------");
-        }
+        	}
+    	}
     }
 
     public void buscarAnimalPorNome() {
@@ -75,50 +89,4 @@ public class Gerenciadorpetshop {
         }
     }
 
-    public void iniciar() {
-        int opcao;
-        do {
-            System.out.println("\n=== MENU ===");
-            System.out.println("1 - Cadastrar Cachorro");
-            System.out.println("2 - Cadastrar Gato");
-            System.out.println("3 - Cadastrar Hamster");
-            System.out.println("4 - Exibir Animais");
-            System.out.println("5 - Buscar Animal por Nome");
-            System.out.println("6 - Sair");
-            System.out.print("Escolha uma opção: ");
-
-            opcao = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (opcao) {
-                case 1:
-                    cadastrarcachorro();
-                    break;
-                case 2:
-                    cadastrargato();
-                    break;
-                case 3:
-                    cadastrarhamster();
-                    break;
-                case 4:
-                    exibirAnimais();
-                    break;
-                case 5:
-                    buscarAnimalPorNome();
-                    break;
-                case 6:
-                    System.out.println("Encerrando o programa...");
-                    break;
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
-            }
-        } while (opcao != 6);
-
-        scanner.close();
-    }
-
-    public static void main(String[] args) {
-        petshop petShop = new petshop();
-        petShop.iniciar();
-    }
 }

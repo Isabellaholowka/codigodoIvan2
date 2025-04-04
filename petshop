@@ -4,78 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class petshop {
-    private ArrayList<Animal> animais;
-    private Scanner scanner;
 
-    public petshop() {
-        this.animais = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
-    }
-
-    public void cadastrarcachorro() {
-        System.out.print("Nome do cachorro: ");
-        String nome = scanner.nextLine();
-        System.out.print("Idade do cachorro: ");
-        int idade = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Raça do cachorro: ");
-        String raca = scanner.nextLine();
-        animais.add(new cachorro(nome, idade, raca));
-        System.out.println("Cachorro cadastrado com sucesso!");
-    }
-
-    public void cadastrargato() {
-        System.out.print("Nome do gato: ");
-        String nome = scanner.nextLine();
-        System.out.print("Idade do gato: ");
-        int idade = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Cor do pelo do gato: ");
-        String corPelo = scanner.nextLine();
-        animais.add(new gato(nome, idade, corPelo));
-        System.out.println("Gato cadastrado com sucesso!");
-    }
-
-    public void cadastrarhamster() {
-        System.out.print("Nome do hamster: ");
-        String nome = scanner.nextLine();
-        System.out.print("Idade do hamster: ");
-        int idade = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Cor do pelo do hamster: ");
-        String corPelo = scanner.nextLine();
-        animais.add(new hamster(nome, idade, corPelo));
-        System.out.println("Hamster cadastrado com sucesso!");
-    }
-
-    public void exibirAnimais() {
-        System.out.println("\n=== Lista de Animais Cadastrados ===");
-        for (Animal animal : animais) {
-            animal.exibirInfo();
-            System.out.println("------------------------");
-        }
-    }
-
-    public void buscarAnimalPorNome() {
-        System.out.print("Digite o nome do animal que deseja buscar: ");
-        String nomeBusca = scanner.nextLine();
-        boolean encontrado = false;
-
-        System.out.println("\n🔎 RESULTADO DA BUSCA:");
-        for (Animal animal : animais) {
-            if (animal.getNome().equalsIgnoreCase(nomeBusca)) {
-                animal.exibirInfo();
-                encontrado = true;
-            }
-        }
-
-        if (!encontrado) {
-            System.out.println("⚠ Nenhum animal encontrado com o nome '" + nomeBusca + "'.");
-        }
-    }
-
-    public void iniciar() {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Animal> animais = new ArrayList<>();
         int opcao;
+        Gerenciadorpetshop cadastro = new Gerenciadorpetshop();
         do {
             System.out.println("\n=== MENU ===");
             System.out.println("1 - Cadastrar Cachorro");
@@ -85,25 +19,26 @@ public class petshop {
             System.out.println("5 - Buscar Animal por Nome");
             System.out.println("6 - Sair");
             System.out.print("Escolha uma opção: ");
+            
 
             opcao = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcao) {
                 case 1:
-                    cadastrarcachorro();
+                    cadastro.cadastrarcachorro();
                     break;
                 case 2:
-                    cadastrargato();
+                    cadastro.cadastrargato();
                     break;
                 case 3:
-                    cadastrarhamster();
+                    cadastro.cadastrarhamster();
                     break;
                 case 4:
-                    exibirAnimais();
+                    cadastro.exibirAnimais();
                     break;
                 case 5:
-                    buscarAnimalPorNome();
+                    cadastro.buscarAnimalPorNome();
                     break;
                 case 6:
                     System.out.println("Encerrando o programa...");
@@ -116,8 +51,4 @@ public class petshop {
         scanner.close();
     }
 
-    public static void main(String[] args) {
-        petshop petShop = new petshop();
-        petShop.iniciar();
-    }
 }
