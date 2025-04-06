@@ -61,7 +61,7 @@ public class Gerenciadorpetshop {
 
     public void exibirAnimais() {
     	if (animais.isEmpty()) {
-    		System.out.println("Nenhum Veículo Cadastrado!");
+    		System.out.println("Nenhum Animal Cadastrado!");
     	} else {
         System.out.println("\n=== Lista de Animais Cadastrados ===");
         for (Animal animal : animais) {
@@ -92,8 +92,8 @@ public class Gerenciadorpetshop {
         try (FileWriter writer = new FileWriter(ARQUIVO_CSV, true);
             BufferredWriter bw = new BuefferedWriter(writer)) {
 
-            String tipo = veiculo.getClass().getSimpleName();
-            bw.writer(tipo + "," + veiculo.getNome() + veiculo.getIdade() + "\n");
+            String tipo = animal.getClass().getSimpleName();
+            bw.writer(tipo + "," + animal.getNome() + animal.getIdade() + "\n");
 
         } catch (IOExpeception e) {
             System.out.println("X Erro ao salvar animal no arquivo");
