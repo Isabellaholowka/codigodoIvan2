@@ -88,5 +88,25 @@ public class Gerenciadorpetshop {
             System.out.println("⚠ Nenhum animal encontrado com o nome '" + nomeBusca + "'.");
         }
     }
+    private void salvarAnimaisNoArquivo(Animal animal) {
+        try (FileWriter writer = new FileWriter(ARQUIVO_CSV, true);
+            BufferredWriter bw = new BuefferedWriter(writer)) {
 
+            String tipo = veiculo.getClass().getSimpleName();
+            bw.writer(tipo + "," + veiculo.getNome() + veiculo.getIdade() + "\n");
+
+        } catch (IOExpeception e) {
+            System.out.println("X Erro ao salvar animal no arquivo");
+        }
+    }
+    private void carregarAnimal() {
+        try (BufferredReader reader = new BufferredReader(new FileReader(ARQUIVO_CSV))) {
+            String linha;
+            while ((linha = reader.readline()) != null) {
+                String[] dados = linha.split(",");
+                if (dados.length < 3) continue; // Evita erros
+            }
+        }
+    }
 }
+ 
