@@ -1,112 +1,132 @@
 package br.com.petshop;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Gerenciadorpetshop {
-    private ArrayList<Animal> animais;
-    private Scanner scanner;
+	private ArrayList<Animal> animais;
+	private Scanner scanner;
 
-    public Gerenciadorpetshop() {
-        this.animais = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
-    }
+	public Gerenciadorpetshop() {
+		this.animais = new ArrayList<>();
+		this.scanner = new Scanner(System.in);
+	}
 
-    public void cadastrarcachorro() {
-        System.out.print("Nome do cachorro: ");
-        String nome = scanner.nextLine();
-        System.out.print("Idade do cachorro: ");
-        int idade = scanner.nextInt();
-        System.out.print("Raça do cachorro: ");
-        String raca = scanner.nextLine();
-        scanner.nextLine();
-        
-        
-        cachorro cachorro = new cachorro (nome, idade,raca);
-    	animais.add(cachorro);
-    	salvarAnimaisNoArquivo (cachorro);
-    	System.out.print("Cahorro cadastro com sucesso!! ");
-    }
+	public void cadastrarcachorro() {
+		System.out.print("Nome do cachorro: ");
+		String nome = scanner.nextLine();
+		System.out.print("Idade do cachorro: ");
+		int idade = scanner.nextInt();
+		System.out.print("Raça do cachorro: ");
+		String raca = scanner.nextLine();
+		scanner.nextLine();
 
-    public void cadastrargato() {
-        System.out.print("Nome do gato: ");
-        String nome = scanner.nextLine();
-        System.out.print("Idade do gato: ");
-        int idade = scanner.nextInt();
-        System.out.print("Cor do pelo do gato: ");
-        String corPelo = scanner.nextLine();
-        scanner.nextLine();
-        
-        gato gato = new gato (nome, idade,corPelo);
-    	animais.add(gato);
-    	salvarAnimaisNoArquivo (gato);
-    	System.out.print("Gato cadastro com sucesso!! ");
-    }
+		cachorro cachorro = new cachorro(nome, idade, raca);
+		animais.add(cachorro);
+		salvarAnimaisNoArquivo(cachorro);
+		System.out.print("Cahorro cadastro com sucesso!! ");
+	}
 
-    public void cadastrarhamster() {
-        System.out.print("Nome do hamster: ");
-        String nome = scanner.nextLine();
-        System.out.print("Idade do hamster: ");
-        int idade = scanner.nextInt();
-        System.out.print("Cor do pelo do hamster: ");
-        String corPelo = scanner.nextLine(); 
-        scanner.nextLine();
-       
-        hamster hamster = new hamster (nome, idade,corPelo);
-    	animais.add(hamster);
-    	salvarAnimaisNoArquivo (hamster);
-    	System.out.print("Hamster cadastro com sucesso!! ");
-    }
+	public void cadastrargato() {
+		System.out.print("Nome do gato: ");
+		String nome = scanner.nextLine();
+		System.out.print("Idade do gato: ");
+		int idade = scanner.nextInt();
+		System.out.print("Cor do pelo do gato: ");
+		String corPelo = scanner.nextLine();
+		scanner.nextLine();
 
-    public void exibirAnimais() {
-    	if (animais.isEmpty()) {
-    		System.out.println("Nenhum Animal Cadastrado!");
-    	} else {
-        System.out.println("\n=== Lista de Animais Cadastrados ===");
-        for (Animal animal : animais) {
-            animal.exibirInfo();
-            System.out.println("------------------------");
-        	}
-    	}
-    }
+		gato gato = new gato(nome, idade, corPelo);
+		animais.add(gato);
+		salvarAnimaisNoArquivo(gato);
+		System.out.print("Gato cadastro com sucesso!! ");
+	}
 
-    public void buscarAnimalPorNome() {
-        System.out.print("Digite o nome do animal que deseja buscar: ");
-        String nomeBusca = scanner.nextLine();
-        boolean encontrado = false;
+	public void cadastrarhamster() {
+		System.out.print("Nome do hamster: ");
+		String nome = scanner.nextLine();
+		System.out.print("Idade do hamster: ");
+		int idade = scanner.nextInt();
+		System.out.print("Cor do pelo do hamster: ");
+		String corPelo = scanner.nextLine();
+		scanner.nextLine();
 
-        System.out.println("\n🔎 RESULTADO DA BUSCA:");
-        for (Animal animal : animais) {
-            if (animal.getNome().equalsIgnoreCase(nomeBusca)) {
-                animal.exibirInfo();
-                encontrado = true;
-            }
-        }
+		hamster hamster = new hamster(nome, idade, corPelo);
+		animais.add(hamster);
+		salvarAnimaisNoArquivo(hamster);
+		System.out.print("Hamster cadastro com sucesso!! ");
+	}
 
-        if (!encontrado) {
-            System.out.println("⚠ Nenhum animal encontrado com o nome '" + nomeBusca + "'.");
-        }
-    }
-    private void salvarAnimaisNoArquivo(Animal animal) {
-        try (FileWriter writer = new FileWriter(ARQUIVO_CSV, true);
-            BufferredWriter bw = new BuefferedWriter(writer)) {
+	public void exibirAnimais() {
+		if (animais.isEmpty()) {
+			System.out.println("Nenhum Animal Cadastrado!");
+		} else {
+			System.out.println("\n=== Lista de Animais Cadastrados ===");
+			for (Animal animal : animais) {
+				animal.exibirInfo();
+				System.out.println("------------------------");
+			}
+		}
+	}
 
-            String tipo = animal.getClass().getSimpleName();
-            bw.writer(tipo + "," + animal.getNome() + animal.getIdade() + "\n");
+	public void buscarAnimalPorNome() {
+		System.out.print("Digite o nome do animal que deseja buscar: ");
+		String nomeBusca = scanner.nextLine();
+		boolean encontrado = false;
 
-        } catch (IOExpeception e) {
-            System.out.println("X Erro ao salvar animal no arquivo");
-        }
-    }
-    private void carregarAnimal() {
-        try (BufferredReader reader = new BufferredReader(new FileReader(ARQUIVO_CSV))) {
-            String linha;
-            while ((linha = reader.readline()) != null) {
-                String[] dados = linha.split(",");
-                if (dados.length < 3) continue; // Evita erros
-            }
-        }
-    }
+		System.out.println("\n🔎 RESULTADO DA BUSCA:");
+		for (Animal animal : animais) {
+			if (animal.getNome().equalsIgnoreCase(nomeBusca)) {
+				animal.exibirInfo();
+				encontrado = true;
+			}
+		}
+
+		if (!encontrado) {
+			System.out.println("⚠ Nenhum animal encontrado com o nome '" + nomeBusca + "'.");
+		}
+	}
+
+	private void salvarAnimaisNoArquivo(Animal animal) {
+		try (FileWriter writer = new FileWriter(ARQUIVO_CSV, true); BufferredWriter bw = new BuefferedWriter(writer)) {
+
+			String tipo = animal.getClass().getSimpleName();
+			bw.writer(tipo + "," + animal.getNome() + animal.getIdade() + "\n");
+
+		} catch (IOExpeception e) {
+			System.out.println("X Erro ao salvar animal no arquivo");
+		}
+	}
+
+	private void carregarAnimal() {
+		try (BufferredReader reader = new BufferredReader(new FileReader(ARQUIVO_CSV))) {
+			String linha;
+			while ((linha = reader.readline()) != null) {
+				String[] dados = linha.split(",");
+				if (dados.length < 3)
+					continue;
+
+				String nome = dados[0];
+				String raca = dados[1];
+				int idade = Integer.parseInt(dados[2]);
+
+
+				Animal animal = null;
+				if (nome.equals("cachorro")) {
+					animal = new cachorro(raca,idade, 4);
+				} else if (nome.equals("gato")) {
+					animal = new gato(corPelo, idade, true);
+				} else if (tipo.equals("Caminhao")) {
+					veiculo = new Caminhao(marca, ano, 10);
+				}
+				if (veiculo != null) {
+				}
+				listaVeiculos.add(veiculo);
+			}
+		}
+	} catch (IOExeption e) {
+		System.out.println("Nenhum arquivo encontrado. Criando um novo...");
+	}
 }
- 
