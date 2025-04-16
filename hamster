@@ -5,7 +5,7 @@ public class hamster extends Animal {
 	private int peso;
 
 	// Construtor para inicializar Hamster com atributos específicos
-	public hamster(String nome, int idade, int peso) {
+	public hamster(String nome, int idade, String corPelo, int peso) {
 		super(nome, idade);
 		this.peso = peso;
 	}
