@@ -2,23 +2,32 @@ package br.com.petshop;
 
 //A classe Gato herda de Animal
 public class gato extends Animal {
- private String corPelo;
+	private String sexo;
 
- // Construtor para inicializar Gato com atributos específicos
- public gato(String nome, int idade, String corPelo) {
-     super(nome, idade); // Chama o construtor da classe base (Animal)
-     this.corPelo = corPelo;
- }
+	// Construtor para inicializar Gato com atributos específicos
 
- // Método específico para miar
- public void miar() {
-     System.out.println(getNome() + " está miando: Miau Miau!");
- }
+	public gato(String nome, int idade, String corPelo, String sexo) {
+		super(nome, idade); // Chama o construtor da classe base (Animal)
+		this.sexo = sexo;
+	}
 
- // Sobrescrita do método exibirInfo para incluir a cor do pelo
- @Override
- public void exibirInfo() {
-     super.exibirInfo();
-     System.out.println("Cor do Pelo: " + corPelo);
- }
+	// Método específico para miar
+	public void miar() {
+		System.out.println(getNome() + " está miando: Miau Miau!");
+	}
+
+	// Sobrescrita do método exibirInfo para incluir a cor do pelo
+	@Override
+	public void exibirInfo() {
+		super.exibirInfo();
+		System.out.println("Cor do Pelo: " + sexo);
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 }
