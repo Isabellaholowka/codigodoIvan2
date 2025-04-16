@@ -1,15 +1,14 @@
 package br.com.petshop;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class petshop {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Animal> animais = new ArrayList<>();
-        int opcao;
         Gerenciadorpetshop cadastro = new Gerenciadorpetshop();
+        int opcao;
+        
         do {
             System.out.println("\n=== MENU ===");
             System.out.println("1 - Cadastrar Cachorro");

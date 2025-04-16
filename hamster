@@ -2,23 +2,24 @@ package br.com.petshop;
 
 //A classe Hamster herda de Animal
 public class hamster extends Animal {
- private String corhamster;
+	private int peso;
 
- // Construtor para inicializar Hamster com atributos específicos
- public hamster(String nome, int idade, String corPelo) {
-     super(nome, idade); // Chama o construtor da classe base (Animal)
-     this.corhamster = corPelo;
- }
+	// Construtor para inicializar Hamster com atributos específicos
+	public hamster(String nome, int idade, int peso) {
+		super(nome, idade);
+		this.peso = peso;
+	}
 
- // Método específico para roer
- public void roer() {
-     System.out.println(getNome() + " está roendo algo!");
- }
 
- // Sobrescrita do método exibirInfo para incluir a cor do pelo
- @Override
- public void exibirInfo() {
-     super.exibirInfo();
-     System.out.println("Cor do Pelo: " + corhamster);
- }
+	// Método específico para roer
+	public void roer() {
+		System.out.println(getNome() + " está roendo algo!");
+	}
+
+	// Sobrescrita do método exibirInfo para incluir a cor do pelo
+	@Override
+	public void exibirInfo() {
+		super.exibirInfo();
+		System.out.println("Cor do Pelo: " + peso);
+	}
 }
